@@ -1,10 +1,13 @@
 package com.example.service.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.ToString;
 
 import java.util.Set;
 import java.util.UUID;
 
+@Data
 @Entity
 public class LabResultGroup {
     @Id
@@ -15,6 +18,7 @@ public class LabResultGroup {
 
     private String groupName;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "labResultGroup")
     private Set<LabResult> labResults;
 

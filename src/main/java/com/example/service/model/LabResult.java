@@ -1,10 +1,14 @@
 package com.example.service.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.ToString;
 
 import java.util.Set;
 import java.util.UUID;
 
+@Data
 @Entity
 public class LabResult {
 
@@ -18,15 +22,17 @@ public class LabResult {
 
     private String unit;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lab_result_group_id")
     private LabResultGroup labResultGroup;
 
-    @OneToMany(mappedBy = "labResult")
+    @ToString.Exclude
+    @JsonBackReference
+    @OneToMany(mappedBy = "labResult", fetch = FetchType.LAZY)
     private Set<Measurement> measurements;
 
     public LabResult() {

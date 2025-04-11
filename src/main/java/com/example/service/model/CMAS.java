@@ -1,7 +1,12 @@
 package com.example.service.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -12,21 +17,22 @@ public class CMAS {
     )
     private UUID cmasId;
 
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
     private String date;
 
-    private String scroe;
+    private String score;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
     public CMAS() {
     }
 
-    public CMAS(UUID cmasId, String date, String scroe, Patient patient) {
+    public CMAS(UUID cmasId, String date, String score, Patient patient) {
         this.cmasId = cmasId;
         this.date = date;
-        this.scroe = scroe;
+        this.score = score;
         this.patient = patient;
     }
 
@@ -46,12 +52,12 @@ public class CMAS {
         this.date = date;
     }
 
-    public String getScroe() {
-        return scroe;
+    public String getScore() {
+        return score;
     }
 
-    public void setScroe(String scroe) {
-        this.scroe = scroe;
+    public void setScore(String score) {
+        this.score = score;
     }
 
     public Patient getPatient() {
