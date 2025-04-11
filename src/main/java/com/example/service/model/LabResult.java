@@ -6,9 +6,8 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.util.Set;
-import java.util.UUID;
 
-@Data
+
 @Entity
 public class LabResult {
 
@@ -16,17 +15,17 @@ public class LabResult {
     @GeneratedValue(
             strategy = GenerationType.UUID
     )
-    private UUID labResultId;
+    private String labResultId;
 
     private String resultName;
 
     private String unit;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "lab_result_group_id")
     private LabResultGroup labResultGroup;
 
@@ -38,7 +37,7 @@ public class LabResult {
     public LabResult() {
     }
 
-    public LabResult(UUID labResultId, String resultName, String unit, Patient patient, LabResultGroup labResultGroup, Set<Measurement> measurements) {
+    public LabResult(String labResultId, String resultName, String unit, Patient patient, LabResultGroup labResultGroup, Set<Measurement> measurements) {
         this.labResultId = labResultId;
         this.resultName = resultName;
         this.unit = unit;
@@ -55,11 +54,11 @@ public class LabResult {
         this.measurements = measurements;
     }
 
-    public UUID getLabResultId() {
+    public String getLabResultId() {
         return labResultId;
     }
 
-    public void setLabResultId(UUID labResultId) {
+    public void setLabResultId(String labResultId) {
         this.labResultId = labResultId;
     }
 

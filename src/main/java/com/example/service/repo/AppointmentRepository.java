@@ -7,5 +7,5 @@ import java.util.UUID;
 
 public interface AppointmentRepository extends CrudRepository<Appointment, Integer> {
     Appointment findFirstByOrderByDateDesc();
-    Appointment findFirstByPatientIdOrderByDateDesc(UUID patientId);
+    Appointment findFirstByPatientIdOrderByDateDesc(String patientId);
 }

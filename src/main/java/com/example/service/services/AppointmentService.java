@@ -32,7 +32,7 @@ public class AppointmentService {
         return appointmentRepository.findFirstByOrderByDateDesc();
     }
 
-    public Appointment getLastPatientAppointment(UUID patientId) {
+    public Appointment getLastPatientAppointment(String patientId) {
         return appointmentRepository.findFirstByPatientIdOrderByDateDesc(patientId);
     }
 }

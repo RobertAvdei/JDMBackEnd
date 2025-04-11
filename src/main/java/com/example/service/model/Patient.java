@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.util.Set;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -15,7 +14,8 @@ public class Patient {
     @GeneratedValue(
             strategy = GenerationType.UUID
     )
-    private UUID patientId;
+    @Column(name = "patient_id")
+    private String patientId;
     private String name;
 
     @ToString.Exclude
@@ -35,16 +35,16 @@ public class Patient {
 
     public Patient() {}
 
-    public Patient(UUID patientId, String name) {
+    public Patient(String patientId, String name) {
         this.patientId = patientId;
         this.name = name;
     }
 
-    public UUID getPatientId() {
+    public String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(UUID patientId) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 

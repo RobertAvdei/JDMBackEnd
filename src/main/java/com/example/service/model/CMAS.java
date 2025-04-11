@@ -3,44 +3,41 @@ package com.example.service.model;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.UUID;
-
 @Entity
 public class CMAS {
     @Id
     @GeneratedValue(
             strategy = GenerationType.UUID
     )
-    private UUID cmasId;
+    private String cmasId;
 
     @DateTimeFormat(pattern = "YYYY-MM-DD")
     private String date;
 
     private String score;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patient_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Patient.class)
     private Patient patient;
+
+    @Column(name = "patient_id")
+    private String patientId;
 
     public CMAS() {
     }
 
-    public CMAS(UUID cmasId, String date, String score, Patient patient) {
+    public CMAS(String cmasId, String date, String score, Patient patient) {
         this.cmasId = cmasId;
         this.date = date;
         this.score = score;
         this.patient = patient;
     }
 
-    public UUID getCmasId() {
+    public String getCmasId() {
         return cmasId;
     }
 
-    public void setCmasId(UUID cmasId) {
+    public void setCmasId(String cmasId) {
         this.cmasId = cmasId;
     }
 

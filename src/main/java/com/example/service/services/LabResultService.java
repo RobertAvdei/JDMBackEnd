@@ -20,4 +20,10 @@ public class LabResultService {
         return Lists.newArrayList(labResultRepository.findAll()) ;
     }
 
+    public List<LabResult> getLabResultByPatientId(String patientId) {
+        List<LabResult> result = Lists.newArrayList(labResultRepository.findBypatientPatientId(patientId)) ;
+        System.out.println(result.get(0).getResultName());
+        return result ;
+    }
+
 }

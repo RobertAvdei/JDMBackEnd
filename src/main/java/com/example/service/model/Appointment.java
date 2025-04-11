@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.UUID;
 
 @Data
 @Entity
@@ -13,7 +12,7 @@ public class Appointment {
     @GeneratedValue(
             strategy = GenerationType.UUID
     )
-    private UUID appointmentId;
+    private String appointmentId;
 
     @DateTimeFormat(pattern = "YYYY-MM-DDhh:mm")
     private String date;
@@ -23,13 +22,13 @@ public class Appointment {
     private Patient patient;
 
     @Column(name = "patient_id")
-    private UUID patientId;
+    private String patientId;
 
-    public UUID getAppointmentId() {
+    public String getAppointmentId() {
         return appointmentId;
     }
 
-    public void setAppointmentId(UUID appointmentId) {
+    public void setAppointmentId(String appointmentId) {
         this.appointmentId = appointmentId;
     }
 
@@ -49,11 +48,11 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public UUID getPatientId() {
+    public String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(UUID patientId) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 }

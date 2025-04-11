@@ -3,12 +3,6 @@ package com.example.service.model;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.UUID;
-
 @Entity
 public class Measurement {
 
@@ -16,7 +10,7 @@ public class Measurement {
     @GeneratedValue(
             strategy = GenerationType.UUID
     )
-    private UUID measurementId;
+    private String measurementId;
 
 
     @DateTimeFormat(pattern = "YYYY-MM-DDhh:mm")
@@ -31,7 +25,7 @@ public class Measurement {
     public Measurement() {
     }
 
-    public Measurement(UUID measurementId, String LocalDateTime, String value, LabResult labResult) {
+    public Measurement(String measurementId, String LocalDateTime, String value, LabResult labResult) {
         this.measurementId = measurementId;
         this.dateTime = dateTime;
         this.value = value;
@@ -46,11 +40,11 @@ public class Measurement {
         this.labResult = labResult;
     }
 
-    public UUID getMeasurementId() {
+    public String getMeasurementId() {
         return measurementId;
     }
 
-    public void setMeasurementId(UUID measurementId) {
+    public void setMeasurementId(String measurementId) {
         this.measurementId = measurementId;
     }
 

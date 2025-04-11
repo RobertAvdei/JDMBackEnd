@@ -2,15 +2,12 @@ package com.example.service.controller;
 
 import com.example.service.model.LabResult;
 import com.example.service.services.LabResultService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(
-        origins = {"http://localhost:5173"}
+        origins = {"http://localhost:5173","http://localhost:3000 "}
 )
 @RestController
 public class LabResultController {
@@ -27,6 +24,15 @@ public class LabResultController {
     )
     public List<LabResult> getPatients() {
         return labResultService.getAllLabResults();
+    }
+
+    @RequestMapping(
+            value = {"/labResults/patient/{uuid}"},
+            method = {RequestMethod.GET},
+            produces = {"application/json"}
+    )
+    public  List<LabResult>  getLastPatientAppointment(@PathVariable("uuid") String patientId) {
+        return labResultService.getLabResultByPatientId(patientId);
     }
 
 

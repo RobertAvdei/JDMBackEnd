@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin(
-        origins = {"http://localhost:5173"}
+        origins = {"http://localhost:5173","http://localhost:3000 "}
 )
 @RestController
 public class PatientController {
@@ -44,6 +44,15 @@ public class PatientController {
     )
     public long getPatientsCount() {
         return patientService.getPatientsCount();
+    }
+
+    @RequestMapping(
+            value = {"/patients/{uuid}"},
+            method = {RequestMethod.GET},
+            produces = {"application/json"}
+    )
+    public Patient getLastPatientAppointment(@PathVariable("uuid") String patientId) {
+        return patientService.getPatient(patientId);
     }
 
 }

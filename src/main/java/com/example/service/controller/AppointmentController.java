@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @CrossOrigin(
-        origins = {"http://localhost:5173"}
+        origins = {"http://localhost:5173","http://localhost:3000 "}
 )
 @RestController
 public class AppointmentController {
@@ -32,7 +32,7 @@ public class AppointmentController {
             method = {RequestMethod.GET},
             produces = {"application/json"}
     )
-    public Appointment getLastPatientAppointment(@PathVariable("uuid") UUID patientId) {
+    public Appointment getLastPatientAppointment(@PathVariable("uuid") String patientId) {
         return appointmentService.getLastPatientAppointment(patientId);
     }
 }

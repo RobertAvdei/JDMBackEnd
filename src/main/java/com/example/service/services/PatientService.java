@@ -7,6 +7,7 @@ import com.example.service.repo.PatientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PatientService {
@@ -30,5 +31,11 @@ public class PatientService {
 
     public long getPatientsCount() {
         return patientRepository.count();
+    }
+
+    public Patient getPatient(String patientId) {
+        Patient patient = new Patient();
+        patient.setPatientId(patientId);
+        return patientRepository.findBypatientId(patientId);
     }
 }

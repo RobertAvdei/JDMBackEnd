@@ -1,5 +1,6 @@
 package com.example.service.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -14,32 +15,33 @@ public class LabResultGroup {
     @GeneratedValue(
             strategy = GenerationType.UUID
     )
-    private UUID labResultGroupId;
+    private String labResultGroupId;
 
     private String groupName;
 
     @ToString.Exclude
+    @JsonBackReference
     @OneToMany(mappedBy = "labResultGroup")
     private Set<LabResult> labResults;
 
     public LabResultGroup(){}
 
-    public LabResultGroup(UUID labResultGroupId, String groupName) {
+    public LabResultGroup(String labResultGroupId, String groupName) {
         this.labResultGroupId = labResultGroupId;
         this.groupName = groupName;
     }
 
-    public LabResultGroup(UUID labResultGroupId, String groupName, Set<LabResult> labResults) {
+    public LabResultGroup(String labResultGroupId, String groupName, Set<LabResult> labResults) {
         this.labResultGroupId = labResultGroupId;
         this.groupName = groupName;
         this.labResults = labResults;
     }
 
-    public UUID getLabResultGroupId() {
+    public String getLabResultGroupId() {
         return labResultGroupId;
     }
 
-    public void setLabResultGroupId(UUID labResultGroupId) {
+    public void setLabResultGroupId(String labResultGroupId) {
         this.labResultGroupId = labResultGroupId;
     }
 

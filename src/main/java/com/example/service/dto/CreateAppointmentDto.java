@@ -6,7 +6,7 @@ public class CreateAppointmentDto {
 
     private String date;
 
-    private UUID patientId;
+    private String patientId;
 
     public String getDate() {
         return date;
@@ -16,11 +16,11 @@ public class CreateAppointmentDto {
         this.date = date;
     }
 
-    public UUID getPatientId() {
+    public String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(UUID patientId) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 }
